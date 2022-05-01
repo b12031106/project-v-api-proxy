@@ -1,6 +1,7 @@
 require('dotenv').config();
 const path = require('path');
 const fs = require('fs');
+const cors = require('cors');
 const express = require('express');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
@@ -9,6 +10,13 @@ const app = express();
 const PORT = process.env.PORT;
 const HOST = `localhost`;
 const TARGET_HOST = process.env.TARGET_HOST;
+
+app.use(cors({
+    origin: (origin, cb) => {
+        cb(null, origin);
+    },
+    credentials: true
+}));
 
 app.use('/', (req, res, next) => {
     const mockFilepath = `${__dirname}/mock/${req.path}.json`;
