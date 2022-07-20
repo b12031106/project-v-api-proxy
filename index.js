@@ -10,6 +10,7 @@ const app = express();
 const PORT = process.env.PORT;
 const HOST = `localhost`;
 const TARGET_HOST = process.env.TARGET_HOST;
+const DELAY_MILLISECONDS = process.env.DELAY_MILLISECONDS || 0;
 
 app.use(cors({
     origin: (origin, cb) => {
@@ -17,6 +18,8 @@ app.use(cors({
     },
     credentials: true
 }));
+
+app.use((req, res, next) => setTimeout(next, DELAY_MILLISECONDS));
 
 app.use('/', (req, res, next) => {
     const mockFilepath = `${__dirname}/mock/${req.path}.json`;
