@@ -1,0 +1,6 @@
+{
+    // host: target
+    // reference: https://github.com/chimurai/http-proxy-middleware/blob/master/recipes/router.md
+    "localhost:3050": "https://test.api.com",
+    "mock.api.com.tw": "https://real.api.com.tw"
+}
